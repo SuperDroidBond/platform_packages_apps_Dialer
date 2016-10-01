@@ -111,6 +111,12 @@
     android:name="com.android.dialer.binary.aosp.AospDialerApplication"
     android:supportsRtl="true"
     android:usesCleartextTraffic="false">
+
+    <provider android:name="com.android.dialer.lookup.LookupProvider"
+        android:authorities="com.android.dialer.provider"
+        android:exported="false"
+        android:multiprocess="false" />
+
   </application>
 
 </manifest>
