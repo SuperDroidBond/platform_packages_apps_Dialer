@@ -20,6 +20,7 @@ import android.content.Context;
 import android.hardware.display.DisplayManager;
 import android.hardware.display.DisplayManager.DisplayListener;
 import android.os.PowerManager;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.telecom.CallAudioState;
 import android.view.Display;
@@ -42,6 +43,7 @@ public class ProximitySensor
     implements AccelerometerListener.OrientationListener, InCallStateListener, AudioModeListener {
 
   private static final String TAG = ProximitySensor.class.getSimpleName();
+  private static final String PROXIMITY_SENSOR = "proximity_sensor";
 
   private final PowerManager mPowerManager;
   private final PowerManager.WakeLock mProximityWakeLock;
@@ -54,11 +56,14 @@ public class ProximitySensor
   private boolean mDialpadVisible;
   private boolean mIsAttemptingVideoCall;
   private boolean mIsVideoCall;
+  
+  private Context mContext;
 
   public ProximitySensor(
       @NonNull Context context,
       @NonNull AudioModeProvider audioModeProvider,
       @NonNull AccelerometerListener accelerometerListener) {
+    mContext = context;
     mPowerManager = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
     if (mPowerManager.isWakeLockLevelSupported(PowerManager.PROXIMITY_SCREEN_OFF_WAKE_LOCK)) {
       mProximityWakeLock =
@@ -211,6 +216,8 @@ public class ProximitySensor
             || CallAudioState.ROUTE_BLUETOOTH == audioRoute
             || mIsAttemptingVideoCall
             || mIsVideoCall);
+    screenOnImmediately |= Settings.System.getInt(mContext.getContentResolver(),
+                    PROXIMITY_SENSOR, 1) == 0;
 
     // We do not keep the screen off when the user is outside in-call screen and we are
     // horizontal, but we do not force it on when we become horizontal until the
