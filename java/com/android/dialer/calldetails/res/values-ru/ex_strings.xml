@@ -20,4 +20,13 @@
         <item quantity="other">Проиграть записи</item>
     </plurals>
     <string name="call_playback_no_app_found_toast">Нет приложения для проигрывания выбранной записи.</string>
+
+    <string name="other_settings_label">Другие настройки</string>
+
+    <!-- Dialer postcall -->
+    <string name="enable_post_call_title">Уведомление после звонка</string>
+    <string name="enable_post_call_summary">Включить уведомление внизу экрана после звонка</string>
+
+    <string name="smart_mute_title">Отключение звука</string>
+    <string name="smart_mute_summary">Отключать звук входящего вызова переворотом устройства</string>
 </resources>

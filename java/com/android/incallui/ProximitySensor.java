@@ -152,9 +152,14 @@ public class ProximitySensor
 
   /** Called to identify when the device is laid down flat. */
   @Override
-  public void orientationChanged(int orientation) {
+  public void onOrientationChanged(int orientation) {
     mOrientation = orientation;
     updateProximitySensorMode();
+  }
+
+  @Override
+  public void onDeviceFlipped(boolean faceDown) {
+      // ignored
   }
 
   /** Called to keep track of the overall UI state. */
