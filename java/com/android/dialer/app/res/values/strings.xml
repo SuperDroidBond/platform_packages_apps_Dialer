@@ -998,4 +998,7 @@
   <string name="smart_mute_title">Smart mute</string>
   <string name="smart_mute_summary">Mute the incoming call by flipping the device</string>
 
+  <string name="auto_call_recording_title">Auto call recording</string>
+  <string name="auto_call_recording_key" translatable="false">auto_call_recording</string>
+
 </resources>
